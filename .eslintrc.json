@@ -1,7 +1,9 @@
 {
-  "plugins": ["node","react"],
-  "extends": ["eslint:recommended", "plugin:node/recommended"],
+  "plugins": ["node", "react"],
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
   "rules": {
-    "node/exports-style": ["error", "module.exports"]
+    "node/exports-style": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error"
   }
 }
