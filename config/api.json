@@ -1,6 +1,0 @@
-{
-  "getAllTables": {
-    "method": "get",
-    "url": "/table/name/all"
-  }
-}

@@ -2,18 +2,8 @@ let models  = require('../../models'),
               express = require('express'),
               router  = express.Router();
 
-router.get('/tables/name', (req, res) => {
-  res.json({tables: Object.keys(models)
-                          .filter(key => models[key]
-                          .tableName)
-  });
-});
-
-router.get('/tables/:name/page/:pageNum/count/', (req, res) => {
-  res.json({tables: Object.keys(models)
-    .filter(key => models[key]
-      .tableName)
-  });
+router.get('/association', async (req, res) => {
+  res.json( await models.Dashboard.findAll());
 });
 
 module.exports = router;

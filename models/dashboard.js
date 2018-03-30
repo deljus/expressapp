@@ -1,11 +1,18 @@
 'use strict';
-
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('Dashboadrd', {
+module.exports = (sequelize, DataTypes) => {
+  var Dashboard = sequelize.define('Dashboard', {
     path: DataTypes.STRING,
     sidebarName: DataTypes.STRING,
     navbarName: DataTypes.STRING,
     icon: DataTypes.STRING,
     component: DataTypes.STRING,
     table: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        // associations can be defined here
+      }
+    }
   });
+  return Dashboard;
+};

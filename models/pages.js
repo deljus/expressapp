@@ -1,6 +1,14 @@
 'use strict';
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('Pages', {
+module.exports = (sequelize, DataTypes) => {
+  var Pages = sequelize.define('Pages', {
     title: DataTypes.STRING,
-    text: DataTypes.STRING
+    text: DataTypes.TEXT
+  }, {
+    classMethods: {
+      associate: function(models) {
+        // associations can be defined here
+      }
+    }
   });
+  return Pages;
+};
