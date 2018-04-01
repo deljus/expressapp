@@ -6,4 +6,8 @@ router.get('/association', async (req, res) => {
   res.json( await models.Dashboard.findAll());
 });
 
+router.get('/table/:name', async (req, res) => {
+  res.json( await models[req.params.name].findAll());
+});
+
 module.exports = router;

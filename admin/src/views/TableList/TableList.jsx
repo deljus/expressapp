@@ -30,8 +30,8 @@ class TableList extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  storeTable: state.storeTable[props.table],
+const mapStateToProps = (state, ownProps) => ({
+  storeTable: state.storeTable[ownProps.table],
 });
 
 const mapDispatchToProps = dispatch => ({
