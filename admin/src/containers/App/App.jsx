@@ -24,7 +24,7 @@ const switchRoutes = appRoutes => (
     {appRoutes.map((prop, key, i) => {
       if (i >= appRoutes.length)
         return <Redirect from={prop.path} to={prop.to} key={key} />;
-      return <Route path={prop.path} component={prop.component} key={key} />;
+      return <Route path={prop.path} component={prop.component} key={key} table={prop.table} />;
     })}
   </Switch>
 );

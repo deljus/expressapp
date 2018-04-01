@@ -17,3 +17,4 @@ export const addAccosiationTable = arr => ({
   type: CONST.ADD_ASSOCIATION_TABLE,
   arr,
 });
+

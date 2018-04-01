@@ -6,11 +6,11 @@ module.exports = {
 
       return queryInterface.bulkInsert('Dashboards', [
         {
-          path: "/",
+          path: "/in",
           sidebarName: "Главная",
           navbarName: "Главная",
           icon: "LibraryBooks",
-          component: "Index",
+          component: "TableList",
           table: "",
           createdAt: new Date,
           updatedAt: new Date
@@ -20,8 +20,18 @@ module.exports = {
           sidebarName: "Пользователи",
           navbarName: "Пользователи",
           icon: "LibraryBooks",
-          component: "CRUDTable",
+          component: "TableList",
           table: "Users",
+          createdAt: new Date,
+          updatedAt: new Date
+        },
+        {
+          path: "/dashboard",
+          sidebarName: "Настройка",
+          navbarName: "Настройка",
+          icon: "LibraryBooks",
+          component: "TableList",
+          table: "Dashboards",
           createdAt: new Date,
           updatedAt: new Date
         }

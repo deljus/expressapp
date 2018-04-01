@@ -39,7 +39,15 @@ const appRoutes = (state = [], action) => {
   switch (action.type) {
     case CONST.ADD_ASSOCIATION_TABLE:
       return action.arr;
+    default:
+      return state;
+  }
+};
 
+const tables = (state = [], action) => {
+  switch (action.type) {
+    case CONST.ADD_ASSOCIATION_TABLE:
+      return action.arr;
     default:
       return state;
   }
@@ -48,4 +56,5 @@ const appRoutes = (state = [], action) => {
 export default combineReducers({
   request,
   appRoutes,
+  tables,
 });
