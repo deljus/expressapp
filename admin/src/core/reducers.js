@@ -44,10 +44,10 @@ const appRoutes = (state = [], action) => {
   }
 };
 
-const tables = (state = [], action) => {
+const tables = (state = {}, action) => {
   switch (action.type) {
-    case CONST.ADD_ASSOCIATION_TABLE:
-      return action.arr;
+    case CONST.ADD_TABLE:
+      return {...state, [action.tableName]: {tableData: action.tableData}};
     default:
       return state;
   }

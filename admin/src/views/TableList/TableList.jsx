@@ -7,7 +7,7 @@ import { INIT_TABLE_SAGA } from "core/constants";
 
 class TableList extends Component {
   componentDidMount(){
-
+    this.props.initRequest(this.props.table);
   }
   render() {
     const { table, storeTable } = this.props;
@@ -19,8 +19,8 @@ class TableList extends Component {
             content={
               <Table
                 tableHeaderColor="primary"
-                tableHead={storeTable.tableHead}
-                tableData={storeTable.tableData}
+                // tableHead={storeTable.tableHead}
+                tableData={storeTable.tableData || []}
               />
             }
           />
@@ -31,7 +31,7 @@ class TableList extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  storeTable: state.storeTable[ownProps.table],
+  storeTable: state.tables[ownProps.table] || null,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -24,7 +24,7 @@ const switchRoutes = appRoutes => (
     {appRoutes.map((prop, key, i) => {
       if (i >= appRoutes.length)
         return <Redirect from={prop.path} to={prop.to} key={key} />;
-      return <Route path={prop.path} component={prop.component} key={key} table={prop.table} />;
+      return <Route path={prop.path} render={() => <prop.component table={prop.table} /> } key={key} />;
     })}
   </Switch>
 );
@@ -56,6 +56,7 @@ class App extends React.Component {
 
     return (
       <div className={classes.wrapper}>
+
         <Sidebar
           routes={appRoutes1}
           logoText={"Creative Tim"}
@@ -67,6 +68,7 @@ class App extends React.Component {
           {...rest}
         />
         <div className={classes.mainPanel} ref="mainPanel">
+          <components.Loader />
           <Header
             routes={appRoutes1}
             handleDrawerToggle={this.handleDrawerToggle}

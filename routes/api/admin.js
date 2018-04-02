@@ -3,7 +3,7 @@ let models  = require('../../models'),
               router  = express.Router();
 
 router.get('/association', async (req, res) => {
-  res.json( await models.Dashboard.findAll());
+  res.json( await models.Dashboards.findAll());
 });
 
 router.get('/table/:name', async (req, res) => {

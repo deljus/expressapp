@@ -5,8 +5,14 @@ import {
   TableHead,
   TableRow,
   TableBody,
-  TableCell
+  TableCell,
+  Button
 } from "material-ui";
+
+import {
+  Edit,
+  Delete
+} from 'material-ui-icons';
 
 import PropTypes from "prop-types";
 
@@ -37,13 +43,21 @@ function CustomTable({ ...props }) {
           {tableData.map((prop, key) => {
             return (
               <TableRow key={key}>
-                {prop.map((prop, key) => {
+                {Object.keys(prop).map((pr, key) => {
                   return (
                     <TableCell className={classes.tableCell} key={key}>
-                      {prop}
+                      {prop[pr]}
                     </TableCell>
                   );
                 })}
+                <TableCell className={classes.tableCell} key="buttons">
+                  <Button variant="fab" color="secondary" mini aria-label="edit" className={classes.button}>
+                    <Edit/>
+                  </Button>
+                  <Button variant="fab" aria-label="delete" mini className={classes.button}>
+                    <Delete />
+                  </Button>
+                </TableCell>
               </TableRow>
             );
           })}

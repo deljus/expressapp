@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Dashboard = sequelize.define('Dashboard', {
+  var Dashboard = sequelize.define('Dashboards', {
     path: DataTypes.STRING,
     sidebarName: DataTypes.STRING,
     navbarName: DataTypes.STRING,
