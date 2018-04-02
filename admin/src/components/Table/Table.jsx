@@ -19,7 +19,7 @@ import PropTypes from "prop-types";
 import tableStyle from "variables/styles/tableStyle";
 
 function CustomTable({ ...props }) {
-  const { classes, tableHead, tableData, tableHeaderColor } = props;
+  const { classes, tableHead, tableData, tableHeaderColor, editItem, deleteItem } = props;
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -51,10 +51,11 @@ function CustomTable({ ...props }) {
                   );
                 })}
                 <TableCell className={classes.tableCell} key="buttons">
-                  <Button variant="fab" color="secondary" mini aria-label="edit" className={classes.button}>
+                  <Button color="secondary" mini aria-label="edit" className={classes.button} onClick={() => editItem(prop.id)}>
                     <Edit/>
+                    Edit
                   </Button>
-                  <Button variant="fab" aria-label="delete" mini className={classes.button}>
+                  <Button aria-label="delete" mini className={classes.button} onClick={() => deleteItem(prop.id)}>
                     <Delete />
                   </Button>
                 </TableCell>
@@ -83,7 +84,9 @@ CustomTable.propTypes = {
     "gray"
   ]),
   tableHead: PropTypes.arrayOf(PropTypes.string),
-  tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string))
+  tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  editItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
 };
 
 export default withStyles(tableStyle)(CustomTable);

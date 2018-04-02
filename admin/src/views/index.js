@@ -6,6 +6,7 @@ import Icons from "./Icons/Icons.jsx";
 import Maps from "./Maps/Maps.jsx";
 import NotificationsPage from "./Notifications/Notifications.jsx";
 import Loader from "./Loader/Loader.jsx";
+import TableItemView from './TableItemView/TableItemView';
 
 export {
   DashboardPage,
@@ -15,5 +16,6 @@ export {
   Icons,
   Maps,
   NotificationsPage,
-  Loader
+  Loader,
+  TableItemView
 }
