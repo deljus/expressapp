@@ -7,9 +7,11 @@ import Maps from "./Maps/Maps.jsx";
 import NotificationsPage from "./Notifications/Notifications.jsx";
 import Loader from "./Loader/Loader.jsx";
 import TableItemView from './TableItemView/TableItemView';
+import IndexPage from './IndexPage/IndexPage.jsx'
 
 export {
   DashboardPage,
+  IndexPage,
   UserProfile,
   TableList,
   Typography,

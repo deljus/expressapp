@@ -36,6 +36,12 @@ function CustomTable({ ...props }) {
                   </TableCell>
                 );
               })}
+              <TableCell
+                className={classes.tableCell + " " + classes.tableHeadCell}
+                key="actions"
+              >
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
         ) : null}
@@ -84,7 +90,7 @@ CustomTable.propTypes = {
     "gray"
   ]),
   tableHead: PropTypes.arrayOf(PropTypes.string),
-  tableData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  tableData: PropTypes.arrayOf(PropTypes.object),
   editItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
 };

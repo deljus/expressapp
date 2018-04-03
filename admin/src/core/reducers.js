@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form'
 import * as CONST from './constants';
 
 const requestState = {
@@ -47,7 +48,7 @@ const appRoutes = (state = [], action) => {
 const tables = (state = {}, action) => {
   switch (action.type) {
     case CONST.ADD_TABLE:
-      return {...state, [action.tableName]: {tableData: action.tableData}};
+      return {...state, [action.tableName]: action.tableData };
     default:
       return state;
   }
@@ -57,4 +58,5 @@ export default combineReducers({
   request,
   appRoutes,
   tables,
+  form,
 });

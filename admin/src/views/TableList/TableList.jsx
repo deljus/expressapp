@@ -12,7 +12,7 @@ class TableList extends Component {
   }
   render() {
     const { table, storeTable, history } = this.props;
-    console.log(this.props.history);
+
     return storeTable && (
       <Grid container>
         <ItemGrid xs={12} sm={12} md={12}>
@@ -21,7 +21,7 @@ class TableList extends Component {
             content={
               <Table
                 tableHeaderColor="primary"
-                // tableHead={storeTable.tableHead}
+                tableHead={storeTable.tableHead}
                 tableData={storeTable.tableData || []}
                 editItem={id => history.push(`/table/${table}/edit/${id}`)}
                 deleteItem={() => null}

@@ -10,7 +10,7 @@ module.exports = {
           sidebarName: "Главная",
           navbarName: "Главная",
           icon: "LibraryBooks",
-          component: "TableList",
+          component: "IndexPage",
           table: "",
           createdAt: new Date,
           updatedAt: new Date
