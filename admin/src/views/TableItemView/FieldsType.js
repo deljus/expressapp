@@ -3,14 +3,29 @@ import { TextField } from "material-ui";
 import { DatePicker } from 'material-ui-pickers';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import {
+  ProfileCard,
+  RegularCard,
+  Button,
+  CustomInput,
+  ItemGrid
+} from "components";
+
 
 const TextFieldComp = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
-             floatingLabelText={label}
-             errorText={touched && error}
-             {...input}
-             {...custom}
-  />
+  <ItemGrid xs={12} sm={12} md={6}>
+    <CustomInput
+               formControlProps={{
+                 fullWidth: true
+               }}
+               inputProps={{
+                 label,
+                 error,
+                 input,
+                 custom
+               }}
+    />
+  </ItemGrid>
 )
 
 const EditorFieldComp = () => (
@@ -31,4 +46,4 @@ const FieldTypes = {
   "TEXT": EditorFieldComp,
 };
 
-export default FieldTypes
+export default FieldTypes;

@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { Grid, InputLabel } from "material-ui";
+import React from "react";
 import { Field, reduxForm } from 'redux-form'
-
+import { Grid, InputLabel } from "material-ui";
 import {
   ProfileCard,
   RegularCard,
@@ -11,13 +10,9 @@ import {
 } from "components";
 
 
-import { TextField } from "material-ui";
 import { connect } from "react-redux";
-
-import { DatePicker } from 'material-ui-pickers';
+import FieldsType from "./FieldsType";
 import asyncValidate from './asyncValidate';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const validate = values => {
   const errors = {}
@@ -38,18 +33,17 @@ const TableItem = props => {
   const { handleSubmit, pristine, reset, submitting, columns } = props;
   return (
     <form onSubmit={handleSubmit(asyncValidate)}>
-      { columns.map(column => (
-        <div>
-          <Field name={column.name} component={null} label="First Name"/>
+      <Grid container>
+      { columns.map((column, key) => (
+        <div key={key} >
+          <Field name={column.name} component={FieldsType['STRING']} label={column.name} />
         </div>
       ))}
       <div>
-        <div>
-          <Field name="srtsb" component={null}/>
-        </div>
         <Button color="primary"  type="submit" disabled={pristine || submitting}>Submit</Button>
         <Button color="primary"  type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>
       </div>
+      </Grid>
     </form>
   )
 };
