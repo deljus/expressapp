@@ -48,7 +48,7 @@ const appRoutes = (state = [], action) => {
 const tables = (state = {}, action) => {
   switch (action.type) {
     case CONST.ADD_TABLE:
-      return {...state, [action.tableName]: action.tableData };
+      return {...state, [action.tableName]: {data: action.tableData, columns: action.tableColumns } };
     default:
       return state;
   }

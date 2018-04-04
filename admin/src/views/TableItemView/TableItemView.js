@@ -16,20 +16,8 @@ import { connect } from "react-redux";
 
 import { DatePicker } from 'material-ui-pickers';
 import asyncValidate from './asyncValidate';
-
-
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
-             floatingLabelText={label}
-             errorText={touched && error}
-             {...input}
-             {...custom}
-  />
-)
-
-const renderTextEditor = () => (
-  <FroalaEditor tag='textarea'  />
-)
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const validate = values => {
   const errors = {}
@@ -47,17 +35,17 @@ const validate = values => {
 
 
 const TableItem = props => {
-  const { handleSubmit, pristine, reset, submitting, tableHead } = props;
+  const { handleSubmit, pristine, reset, submitting, columns } = props;
   return (
     <form onSubmit={handleSubmit(asyncValidate)}>
-      { tableHead.map(column => (
+      { columns.map(column => (
         <div>
-          <Field name={column} component={renderTextField} label="First Name"/>
+          <Field name={column.name} component={null} label="First Name"/>
         </div>
       ))}
       <div>
         <div>
-          <Field name="srtsb" component={renderTextEditor}/>
+          <Field name="srtsb" component={null}/>
         </div>
         <Button color="primary"  type="submit" disabled={pristine || submitting}>Submit</Button>
         <Button color="primary"  type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>
@@ -74,8 +62,7 @@ const TableItemView = reduxForm({
 const mapStateToProps = (state, ownProps) => {
   const tableName = ownProps.match.params.tableName;
   return {
-    tableColumns: state.tables[tableName].columnsType,
-    tableHead: state.tables[tableName].tableHead,
+    columns: state.tables[tableName].columns,
   }
 };
 

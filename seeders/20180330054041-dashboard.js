@@ -26,6 +26,26 @@ module.exports = {
           updatedAt: new Date
         },
         {
+          path: "/pages",
+          sidebarName: "Страницы",
+          navbarName: "Страницы",
+          icon: "LibraryBooks",
+          component: "TableList",
+          table: "Pages",
+          createdAt: new Date,
+          updatedAt: new Date
+        },
+        {
+          path: "/menus",
+          sidebarName: "Меню",
+          navbarName: "Меню",
+          icon: "LibraryBooks",
+          component: "TableList",
+          table: "Menus",
+          createdAt: new Date,
+          updatedAt: new Date
+        },
+        {
           path: "/dashboard",
           sidebarName: "Настройка",
           navbarName: "Настройка",

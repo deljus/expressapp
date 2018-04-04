@@ -19,8 +19,9 @@ function* initRoutes() {
 }
 
 function* initTables(action) {
-  const tableData = yield call(REQ.getTable, action.tableName);
-  yield put(addTable(action.tableName, tableData.data));
+  const tableData = yield call(REQ.getTableData, action.tableName);
+  const tableColumns = yield call(REQ.getTableColumns, action.tableName);
+  yield put(addTable(action.tableName, tableData.data, tableColumns.data));
 }
 
 export function* sagas() {

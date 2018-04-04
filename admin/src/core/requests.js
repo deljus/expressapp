@@ -3,4 +3,5 @@ import * as API from '../config';
 
 export const getAccosiationTable = () => axios.get(API.ASSOCIATION);
 
-export const getTable = tableName => axios.get(API.GET_TABLE + tableName);
+export const getTableData = tableName => axios.get(API.GET_TABLE_DATA + tableName);
+export const getTableColumns = tableName => axios.get(API.GET_TABLE_COLUMNS + tableName);

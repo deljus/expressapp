@@ -18,8 +18,9 @@ export const addAccosiationTable = arr => ({
   arr,
 });
 
-export const addTable = (tableName, tableData) => ({
+export const addTable = (tableName, tableData, tableColumns) => ({
   type: CONST.ADD_TABLE,
   tableName,
   tableData,
+  tableColumns,
 });

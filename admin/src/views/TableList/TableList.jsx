@@ -21,8 +21,8 @@ class TableList extends Component {
             content={
               <Table
                 tableHeaderColor="primary"
-                tableHead={storeTable.tableHead}
-                tableData={storeTable.tableData || []}
+                tableHead={storeTable.columns}
+                tableData={storeTable.data || []}
                 editItem={id => history.push(`/table/${table}/edit/${id}`)}
                 deleteItem={() => null}
               />

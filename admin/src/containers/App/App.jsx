@@ -6,7 +6,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 import { withStyles } from "material-ui";
 import { connect } from "react-redux";
-import * as components from 'views';
+import * as Components from 'views';
 import * as icons from 'material-ui-icons';
 import { Header, Footer, Sidebar } from "components";
 
@@ -26,7 +26,7 @@ const switchRoutes = appRoutes => (
         return <Redirect from={prop.path} to={prop.to} key={key} />;
       return <Route path={prop.path} render={() => <prop.component table={prop.table} /> } key={key} />;
     })}
-    <Route path="/table/:tableName/edit/:id" component={components.TableItemView} />;
+    <Route path="/table/:tableName/edit/:id" component={Components.TableItemView} />;
   </Switch>
 );
 
@@ -53,7 +53,7 @@ class App extends React.Component {
   render() {
     const { classes, appRoutes, ...rest } = this.props;
 
-    const appRoutes1 = appRoutes.map(a => { return {  ...a, icon: icons[a.icon], component: components[a.component]}});
+    const appRoutes1 = appRoutes.map(a => { return {  ...a, icon: icons[a.icon], component: Components[a.component]}});
 
     return (
       <div className={classes.wrapper}>
@@ -69,7 +69,8 @@ class App extends React.Component {
           {...rest}
         />
         <div className={classes.mainPanel} ref="mainPanel">
-          <components.Loader />
+          <Components.Loader />
+          <Components.ErrorSnackBar />
           <Header
             routes={appRoutes1}
             handleDrawerToggle={this.handleDrawerToggle}

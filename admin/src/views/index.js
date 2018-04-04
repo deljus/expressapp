@@ -7,7 +7,8 @@ import Maps from "./Maps/Maps.jsx";
 import NotificationsPage from "./Notifications/Notifications.jsx";
 import Loader from "./Loader/Loader.jsx";
 import TableItemView from './TableItemView/TableItemView';
-import IndexPage from './IndexPage/IndexPage.jsx'
+import IndexPage from './IndexPage/IndexPage.jsx';
+import ErrorSnackBar from './ErrorSnackBar/ErrorSnackBar.jsx'
 
 export {
   DashboardPage,
@@ -19,5 +20,6 @@ export {
   Maps,
   NotificationsPage,
   Loader,
-  TableItemView
+  TableItemView,
+  ErrorSnackBar
 }

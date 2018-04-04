@@ -26,13 +26,13 @@ function CustomTable({ ...props }) {
         {tableHead !== undefined ? (
           <TableHead className={classes[tableHeaderColor + "TableHeader"]}>
             <TableRow>
-              {tableHead.map((prop, key) => {
+              {tableHead.map((column, key) => {
                 return (
                   <TableCell
                     className={classes.tableCell + " " + classes.tableHeadCell}
                     key={key}
                   >
-                    {prop}
+                    {column.name}
                   </TableCell>
                 );
               })}
