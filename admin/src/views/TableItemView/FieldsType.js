@@ -11,38 +11,57 @@ import {
   ItemGrid
 } from "components";
 
-
-const TextFieldComp = ({ input, label, meta: { touched, error }, ...custom }) => (
+const TextFieldComp = ({ input, label, meta: { error }, ...custom }) => (
   <ItemGrid xs={12} sm={12} md={6}>
     <CustomInput
-               formControlProps={{
-                 fullWidth: true
-               }}
-               inputProps={{
-                 label,
-                 error,
-                 input,
-                 custom
-               }}
+      id={label}
+      formControlProps={{ fullWidth: true }}
+      labelText={label}
+      inputProps={input}
+      error={error}
+    />
+  </ItemGrid>
+);
+
+const IntFieldComp = ({ input, label, meta: { error }, ...custom }) => (
+  <ItemGrid xs={12} sm={12} md={6}>
+    <CustomInput
+      id={label}
+      formControlProps={{ fullWidth: true }}
+      labelText={label}
+      inputProps={{ type: 'number', ...input }}
+      error={error}
+    />
+  </ItemGrid>
+);
+
+const EditorFieldComp = () => (
+  <ItemGrid xs={12} sm={12} md={12}>
+    <Editor
+      wrapperClassName="demo-wrapper"
+      editorClassName="demo-editor"
+      toolbarClassName="demo-class"
     />
   </ItemGrid>
 )
 
-const EditorFieldComp = () => (
-  <Editor
-    wrapperClassName="demo-wrapper"
-    editorClassName="demo-editor"
-  />
-)
-
-const DataFieldComp = () => (
-  <div></div>
+const DataFieldComp = ({ input, label, meta: { error }, ...custom }) => (
+  <ItemGrid xs={12} sm={12} md={6}>
+    <DatePicker
+      label={label}
+      clearable
+      disableFuture
+      maxDateMessage="Date must be less than today"
+      animateYearScrolling={false}
+      {...input}
+    />
+  </ItemGrid>
 );
 
 const FieldTypes = {
   "STRING" : TextFieldComp,
-  "INTEGER": TextFieldComp,
-  "DATA": DataFieldComp,
+  "INTEGER": IntFieldComp,
+  "DATE": DataFieldComp,
   "TEXT": EditorFieldComp,
 };
 

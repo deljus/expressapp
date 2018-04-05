@@ -26,7 +26,8 @@ const switchRoutes = appRoutes => (
         return <Redirect from={prop.path} to={prop.to} key={key} />;
       return <Route path={prop.path} render={() => <prop.component table={prop.table} /> } key={key} />;
     })}
-    <Route path="/table/:tableName/edit/:id" component={Components.TableItemView} />;
+    <Route path="/table/:tableName/edit/:id" component={Components.TableItemView} />
+    <Route path="/table/:tableName/create" component={Components.TableItemView} />
   </Switch>
 );
 

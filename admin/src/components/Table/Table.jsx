@@ -46,22 +46,22 @@ function CustomTable({ ...props }) {
           </TableHead>
         ) : null}
         <TableBody>
-          {tableData.map((prop, key) => {
+          {Object.keys(tableData).map((ind, key) => {
             return (
               <TableRow key={key}>
-                {Object.keys(prop).map((pr, key) => {
+                {Object.keys(tableData[ind]).map((pr, key) => {
                   return (
                     <TableCell className={classes.tableCell} key={key}>
-                      {prop[pr]}
+                      {tableData[ind][pr]}
                     </TableCell>
                   );
                 })}
                 <TableCell className={classes.tableCell} key="buttons">
-                  <Button color="secondary" mini aria-label="edit" className={classes.button} onClick={() => editItem(prop.id)}>
+                  <Button color="secondary" mini aria-label="edit" className={classes.button} onClick={() => editItem(ind)}>
                     <Edit/>
                     Edit
                   </Button>
-                  <Button aria-label="delete" mini className={classes.button} onClick={() => deleteItem(prop.id)}>
+                  <Button aria-label="delete" mini className={classes.button} onClick={() => deleteItem(ind)}>
                     <Delete />
                   </Button>
                 </TableCell>
@@ -89,7 +89,7 @@ CustomTable.propTypes = {
     "rose",
     "gray"
   ]),
-  tableHead: PropTypes.arrayOf(PropTypes.string),
+  tableHead: PropTypes.arrayOf(PropTypes.object),
   tableData: PropTypes.arrayOf(PropTypes.object),
   editItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,

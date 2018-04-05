@@ -1,6 +1,7 @@
-import React from "react";
-import { Field, reduxForm } from 'redux-form'
-import { Grid, InputLabel } from "material-ui";
+import React, { Component } from "react";
+import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
+import { Grid } from "material-ui";
 import {
   ProfileCard,
   RegularCard,
@@ -29,23 +30,43 @@ const validate = values => {
 }
 
 
-const TableItem = props => {
-  const { handleSubmit, pristine, reset, submitting, columns } = props;
+class TableItem extends Component {
+
+  componentDidMount(){
+    const { columns, initEditPage, initCreatePage, match } = this.props;
+    const id = match.params.id;
+    if(!columns && id){
+      initEditPage(id)
+    } else if(!columns && !id){
+      initCreatePage()
+    }else{
+
+    }
+  }
+  render(){
+
+  const { handleSubmit, pristine, reset, submitting, columns } = this.props;
+
   return (
     <form onSubmit={handleSubmit(asyncValidate)}>
-      <Grid container>
-      { columns.map((column, key) => (
-        <div key={key} >
-          <Field name={column.name} component={FieldsType['STRING']} label={column.name} />
-        </div>
-      ))}
-      <div>
-        <Button color="primary"  type="submit" disabled={pristine || submitting}>Submit</Button>
-        <Button color="primary"  type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</Button>
-      </div>
-      </Grid>
+      <RegularCard
+        cardTitle="Edit Profile"
+        cardSubtitle="Complete your profile"
+        content={
+          <Grid container>
+            {columns && columns.map((column, key) => (
+              <Field name={column.name} component={FieldsType[column.type]} label={column.name}/>
+            ))}
+            <ItemGrid xs={12} sm={12} md={12}>
+              <Button color="primary" type="submit" disabled={pristine || submitting}>Submit</Button>
+              <Button color="primary" type="button" disabled={pristine || submitting} onClick={reset}>Clear
+                Values</Button>
+            </ItemGrid>
+          </Grid>
+        }/>
     </form>
   )
+}
 };
 
 const TableItemView = reduxForm({
@@ -53,11 +74,21 @@ const TableItemView = reduxForm({
   validate
 })(TableItem);
 
+
+
 const mapStateToProps = (state, ownProps) => {
   const tableName = ownProps.match.params.tableName;
+  const id = ownProps.match.params.id;
+  const table = state.tables[tableName];
   return {
-    columns: state.tables[tableName].columns,
+    columns: table && table.columns,
+    data: table && table.data && table.data[id]
   }
 };
 
-export default connect(mapStateToProps)(TableItemView);
+const mapDispatchToProps = dispatch => ({
+  initEditPage: () => dispatch({ type: '' }),
+  initCreatePage: () => dispatch({ type: '' }),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableItemView);

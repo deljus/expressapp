@@ -8,7 +8,11 @@ router.get('/association', async (req, res) => {
 
 router.get('/table/data/:name', async (req, res) => {
   const tableName = req.params.name;
-  const data = await models[tableName].findAll();
+  const tableData = await models[tableName].findAll();
+  const data = tableData.reduce((acc, cur, i) => {
+    acc[cur.id] = cur;
+    return acc
+  }, {});
   res.json(data);
 });
 
