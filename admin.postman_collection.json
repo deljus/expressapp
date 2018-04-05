@@ -1,0 +1,74 @@
+{
+	"info": {
+		"name": "admin",
+		"_postman_id": "0dcab7f7-7a58-496a-a432-2b5f63bee9f8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "table_data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "table_columns",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "760d0072-36b3-4e90-b588-c0f6270d8e6c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e46658d0-b54c-4aac-8d27-d235ac459caf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "6b2fa8dd-1521-4ac3-bb15-0c26533990f1",
+			"key": "domain",
+			"value": "http://localhost:3002",
+			"type": "text",
+			"description": ""
+		},
+		{
+			"id": "f53b65b8-3771-4396-8771-3baa7e843337",
+			"key": "table",
+			"value": "Dashboards",
+			"type": "text",
+			"description": ""
+		}
+	]
+}

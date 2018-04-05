@@ -14,6 +14,7 @@ import {
 import { connect } from "react-redux";
 import FieldsType from "./FieldsType";
 import asyncValidate from './asyncValidate';
+import { INIT_CREATE_TABLE_ITEM_SAGA, INIT_EDIT_TABLE_ITEM_SAGA } from 'core/constants';
 
 const validate = values => {
   const errors = {}
@@ -34,11 +35,12 @@ class TableItem extends Component {
 
   componentDidMount(){
     const { columns, initEditPage, initCreatePage, match } = this.props;
-    const id = match.params.id;
+    const { tableName, id } = match.params;
+
     if(!columns && id){
-      initEditPage(id)
+      initEditPage(tableName,id)
     } else if(!columns && !id){
-      initCreatePage()
+      initCreatePage(tableName)
     }else{
 
     }
@@ -82,13 +84,13 @@ const mapStateToProps = (state, ownProps) => {
   const table = state.tables[tableName];
   return {
     columns: table && table.columns,
-    data: table && table.data && table.data[id]
+    initialValues: table && table.data && table.data[id]
   }
 };
 
 const mapDispatchToProps = dispatch => ({
-  initEditPage: () => dispatch({ type: '' }),
-  initCreatePage: () => dispatch({ type: '' }),
+  initEditPage: (tableName, id) => dispatch({ type: INIT_EDIT_TABLE_ITEM_SAGA, tableName, id }),
+  initCreatePage: tableName => dispatch({ type: INIT_CREATE_TABLE_ITEM_SAGA, tableName }),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableItemView);

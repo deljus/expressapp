@@ -1,6 +1,19 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { startRequest, succsessRequest, errorRequest, addAccosiationTable, addTable } from './action';
-import {GET_ASSOCIATION_TABLE_SAGA, INIT_TABLE_SAGA} from './constants';
+import {
+  startRequest,
+  succsessRequest,
+  errorRequest,
+  addAccosiationTable,
+  addTable,
+  addColumns
+} from './action';
+
+import {
+  GET_ASSOCIATION_TABLE_SAGA,
+  INIT_TABLE_SAGA,
+  INIT_CREATE_TABLE_ITEM_SAGA,
+  INIT_EDIT_TABLE_ITEM_SAGA
+} from './constants';
 import * as REQ from './requests';
 
 function* requestSaga(fn, action) {
@@ -18,13 +31,26 @@ function* initRoutes() {
   yield put(addAccosiationTable(routes.data));
 }
 
-function* initTables(action) {
-  const tableData = yield call(REQ.getTableData, action.tableName);
-  const tableColumns = yield call(REQ.getTableColumns, action.tableName);
-  yield put(addTable(action.tableName, tableData.data, tableColumns.data));
+function* initTables({ tableName }) {
+  const tableData = yield call(REQ.getTableData, tableName);
+  const tableColumns = yield call(REQ.getTableColumns, tableName);
+  yield put(addTable(tableName, tableData.data, tableColumns.data));
+}
+
+function* initEditTable({ tableName, id }) {
+  const tableData = yield call(REQ.getTableDataItem, tableName, id);
+  const tableColumns = yield call(REQ.getTableColumns, tableName);
+  yield put(addTable(tableName, tableData.data, tableColumns.data));
+}
+
+function* initCreateItemTable({ tableName }) {
+  const tableColumns = yield call(REQ.getTableColumns, tableName);
+  yield put(addColumns(tableName, tableColumns.data));
 }
 
 export function* sagas() {
   yield takeEvery(GET_ASSOCIATION_TABLE_SAGA, requestSaga, initRoutes);
-  yield takeEvery(INIT_TABLE_SAGA, requestSaga, initTables)
+  yield takeEvery(INIT_TABLE_SAGA, requestSaga, initTables);
+  yield takeEvery(INIT_EDIT_TABLE_ITEM_SAGA, requestSaga, initEditTable);
+  yield takeEvery(INIT_CREATE_TABLE_ITEM_SAGA, requestSaga, initCreateItemTable)
 }
