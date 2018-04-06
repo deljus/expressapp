@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { TextField } from "material-ui";
 import { DatePicker } from 'material-ui-pickers';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {
   ProfileCard,
   RegularCard,
   Button,
+  EditorHtml,
   CustomInput,
   ItemGrid
 } from "components";
@@ -35,19 +34,22 @@ const IntFieldComp = ({ input, label, meta: { error }, ...custom }) => (
   </ItemGrid>
 );
 
-const EditorFieldComp = () => (
-  <ItemGrid xs={12} sm={12} md={12}>
-    <Editor
-      wrapperClassName="demo-wrapper"
-      editorClassName="demo-editor"
-      toolbarClassName="demo-class"
-    />
-  </ItemGrid>
-)
+const EditorFieldComp = ({ input, label, meta: { error }, ...custom }) => {
+  const {value, onChange} = input;
+  return(
+
+      <EditorHtml
+        formControlProps={{ fullWidth: true }}
+        editorProps={{value, onChange}}
+      />
+
+  )
+}
 
 const DataFieldComp = ({ input, label, meta: { error }, ...custom }) => (
   <ItemGrid xs={12} sm={12} md={6}>
     <DatePicker
+
       label={label}
       clearable
       disableFuture
@@ -61,7 +63,7 @@ const DataFieldComp = ({ input, label, meta: { error }, ...custom }) => (
 const FieldTypes = {
   "STRING" : TextFieldComp,
   "INTEGER": IntFieldComp,
-  "DATE": DataFieldComp,
+  "DATE": TextFieldComp,
   "TEXT": EditorFieldComp,
 };
 
