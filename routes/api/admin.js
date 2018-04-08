@@ -20,16 +20,24 @@ const getDataFromTable = async (req, res) => {
     return acc
   }, {});
   res.json(data);
-}
+};
 
 router.get('/table/data/:name', getDataFromTable);
 router.get('/table/data/:name/:id', getDataFromTable);
+router.delete('/table/data/delete', (req, res) => {
+
+});
 
 router.get('/table/columns/:name', async (req, res) => {
   const tableName = req.params.name;
   const columnsName = await Object.keys(models[tableName].tableAttributes);
   const columnsType = await columnsName.map(columnName => models[tableName].tableAttributes[columnName].type.key);
-  const data = columnsName.map((name, index) => ({ name, type: columnsType[index]}));
+  const columnsRequired = await columnsName.map(columnName => models[tableName].tableAttributes[columnName].allowNull);
+  const data = columnsName.map((name, index) => ({
+    name,
+    type: columnsType[index],
+    allowNull: columnsRequired[index]
+  }));
   res.json(data);
 });
 

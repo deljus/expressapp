@@ -30,3 +30,9 @@ export const addColumns = (tableName, columns) => ({
   tableName,
   columns,
 });
+
+export const deleteTableData = (tableName, id) => ({
+  type: CONST.DELETE_TABLE_ITEM,
+  tableName,
+  id,
+});

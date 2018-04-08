@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form';
-import PropTypes from 'prop-types';
 import { Grid } from "material-ui";
 import {
   ProfileCard,
@@ -47,7 +46,7 @@ class TableItem extends Component {
   }
   render(){
 
-  const { handleSubmit, pristine, reset, submitting, columns } = this.props;
+  const { handleSubmit, pristine, reset, submitting, columns, history } = this.props;
 
   return (
     <form onSubmit={handleSubmit(asyncValidate)}>
@@ -60,6 +59,7 @@ class TableItem extends Component {
               <Field name={column.name} component={FieldsType[column.type]} label={column.name}/>
             ))}
             <ItemGrid xs={12} sm={12} md={12}>
+              <Button color="primary" onClick={history.goBack}>Back</Button>
               <Button color="primary" type="submit" disabled={pristine || submitting}>Submit</Button>
               <Button color="primary" type="button" disabled={pristine || submitting} onClick={reset}>Clear
                 Values</Button>

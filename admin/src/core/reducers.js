@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form'
 import * as CONST from './constants';
+import _ from 'lodash';
 
 const requestState = {
   loading: false,
@@ -45,12 +46,14 @@ const appRoutes = (state = [], action) => {
   }
 };
 
-const tables = (state = {}, { type, tableName, data, columns }) => {
+const tables = (state = {}, { type, tableName, data, columns, id }) => {
   switch (type) {
     case CONST.ADD_TABLE:
       return {...state, [tableName]: {data, columns } };
     case CONST.ADD_TABLE_COLUMNS:
-      return { ...state, [tableName]: { columns } }
+      return { ...state, [tableName]: { columns } };
+    case CONST.DELETE_TABLE_ITEM:
+      return { ...state };
     default:
       return state;
   }

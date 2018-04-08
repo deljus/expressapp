@@ -9,7 +9,8 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Collapse
 } from "material-ui";
 
 import { HeaderLinks } from "components";
@@ -23,6 +24,7 @@ const Sidebar = ({ ...props }) => {
   }
   const { classes, color, logo, image, logoText, routes } = props;
   var links = (
+    <Collapse in={true} timeout="auto" unmountOnExit>
     <List className={classes.list}>
       {routes.map((prop, key) => {
         if (prop.redirect) return null;
@@ -53,6 +55,7 @@ const Sidebar = ({ ...props }) => {
         );
       })}
     </List>
+    </Collapse>
   );
   var brand = (
     <div className={classes.logo}>

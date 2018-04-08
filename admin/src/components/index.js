@@ -28,6 +28,12 @@ import CustomInput from "./CustomInput/CustomInput.jsx";
 import Footer from "./Footer/Footer.jsx";
 
 // ##############################
+// // // EditorHtml
+// #############################
+
+import EditorHtml from "./EditorHtml/EditorHtml.jsx";
+
+// ##############################
 // // // Grid
 // #############################
 
@@ -118,5 +124,6 @@ export {
   Warning,
   Danger,
   Small,
-  A
+  A,
+  EditorHtml
 };

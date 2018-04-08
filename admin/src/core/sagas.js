@@ -5,14 +5,16 @@ import {
   errorRequest,
   addAccosiationTable,
   addTable,
-  addColumns
+  addColumns,
+  deleteTableData
 } from './action';
 
 import {
   GET_ASSOCIATION_TABLE_SAGA,
   INIT_TABLE_SAGA,
   INIT_CREATE_TABLE_ITEM_SAGA,
-  INIT_EDIT_TABLE_ITEM_SAGA
+  INIT_EDIT_TABLE_ITEM_SAGA,
+  DELETE_TABLE_ITEM_SAGA,
 } from './constants';
 import * as REQ from './requests';
 
@@ -48,9 +50,14 @@ function* initCreateItemTable({ tableName }) {
   yield put(addColumns(tableName, tableColumns.data));
 }
 
+function* deleteTableItem({ tableName, id }) {
+  yield put(deleteTableData(tableName, id))
+}
+
 export function* sagas() {
   yield takeEvery(GET_ASSOCIATION_TABLE_SAGA, requestSaga, initRoutes);
   yield takeEvery(INIT_TABLE_SAGA, requestSaga, initTables);
   yield takeEvery(INIT_EDIT_TABLE_ITEM_SAGA, requestSaga, initEditTable);
-  yield takeEvery(INIT_CREATE_TABLE_ITEM_SAGA, requestSaga, initCreateItemTable)
+  yield takeEvery(INIT_CREATE_TABLE_ITEM_SAGA, requestSaga, initCreateItemTable);
+  yield takeEvery(DELETE_TABLE_ITEM_SAGA, deleteTableItem);
 }

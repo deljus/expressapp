@@ -6,7 +6,10 @@ import {
   TableRow,
   TableBody,
   TableCell,
-  Button
+  TablePagination,
+  Button,
+  Tooltip,
+  TableSortLabel,
 } from "material-ui";
 
 import {
@@ -20,6 +23,7 @@ import tableStyle from "variables/styles/tableStyle";
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor, editItem, deleteItem } = props;
+
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -32,10 +36,23 @@ function CustomTable({ ...props }) {
                     className={classes.tableCell + " " + classes.tableHeadCell}
                     key={key}
                   >
-                    {column.name}
+                    <Tooltip
+                      title="Sort"
+                      placement={column.numeric ? 'bottom-end' : 'bottom-start'}
+                      enterDelay={300}
+                    >
+                      <TableSortLabel
+                        active={true}
+
+                        onClick={()=> null}
+                      >
+                        {column.name}
+                      </TableSortLabel>
+                    </Tooltip>
                   </TableCell>
-                );
-              })}
+                )
+              })
+              }
               <TableCell
                 className={classes.tableCell + " " + classes.tableHeadCell}
                 key="actions"
@@ -70,6 +87,20 @@ function CustomTable({ ...props }) {
           })}
         </TableBody>
       </Table>
+      <TablePagination
+        component="div"
+        count={Object.keys(tableData).length}
+        rowsPerPage={1}
+        page={1}
+        backIconButtonProps={{
+          'aria-label': 'Previous Page',
+        }}
+        nextIconButtonProps={{
+          'aria-label': 'Next Page',
+        }}
+        onChangePage={()=> null}
+        onChangeRowsPerPage={() => null}
+      />
     </div>
   );
 }
@@ -90,7 +121,7 @@ CustomTable.propTypes = {
     "gray"
   ]),
   tableHead: PropTypes.arrayOf(PropTypes.object),
-  tableData: PropTypes.arrayOf(PropTypes.object),
+  tableData: PropTypes.objectOf(PropTypes.object),
   editItem: PropTypes.func.isRequired,
   deleteItem: PropTypes.func.isRequired,
 };

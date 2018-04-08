@@ -37,14 +37,13 @@ const IntFieldComp = ({ input, label, meta: { error }, ...custom }) => (
 const EditorFieldComp = ({ input, label, meta: { error }, ...custom }) => {
   const {value, onChange} = input;
   return(
-
       <EditorHtml
         formControlProps={{ fullWidth: true }}
         editorProps={{value, onChange}}
+        labelText={label}
       />
-
   )
-}
+};
 
 const DataFieldComp = ({ input, label, meta: { error }, ...custom }) => (
   <ItemGrid xs={12} sm={12} md={6}>
