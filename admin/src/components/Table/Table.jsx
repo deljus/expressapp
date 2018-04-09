@@ -63,22 +63,22 @@ function CustomTable({ ...props }) {
           </TableHead>
         ) : null}
         <TableBody>
-          {Object.keys(tableData).map((ind, key) => {
+          {tableData.map((item, key) => {
             return (
               <TableRow key={key}>
-                {Object.keys(tableData[ind]).map((pr, key) => {
+                {Object.keys(item).map((elem, inx) => {
                   return (
-                    <TableCell className={classes.tableCell} key={key}>
-                      {tableData[ind][pr]}
+                    <TableCell className={classes.tableCell} key={inx}>
+                      {item[elem]}
                     </TableCell>
                   );
                 })}
                 <TableCell className={classes.tableCell} key="buttons">
-                  <Button color="secondary" mini aria-label="edit" className={classes.button} onClick={() => editItem(ind)}>
+                  <Button color="secondary" mini aria-label="edit" className={classes.button} onClick={() => editItem(item['id'])}>
                     <Edit/>
                     Edit
                   </Button>
-                  <Button aria-label="delete" mini className={classes.button} onClick={() => deleteItem(ind)}>
+                  <Button aria-label="delete" mini className={classes.button} onClick={() => deleteItem(item['id'])}>
                     <Delete />
                   </Button>
                 </TableCell>

@@ -53,7 +53,7 @@ const tables = (state = {}, { type, tableName, data, columns, id }) => {
     case CONST.ADD_TABLE_COLUMNS:
       return { ...state, [tableName]: { columns } };
     case CONST.DELETE_TABLE_ITEM:
-      return { ...state };
+      return { ...state, [tableName]: { ...state[tableName], data : state[tableName].data.filter(item => item.id !== id) } };
     default:
       return state;
   }

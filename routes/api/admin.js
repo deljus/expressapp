@@ -15,11 +15,8 @@ const getDataFromTable = async (req, res) => {
   } else{
     var tableData = await models[tableName].findAll();
   }
-  const data = tableData.reduce((acc, cur) => {
-    acc[cur.id] = cur;
-    return acc
-  }, {});
-  res.json(data);
+
+  res.json(tableData);
 };
 
 router.get('/table/data/:name', getDataFromTable);

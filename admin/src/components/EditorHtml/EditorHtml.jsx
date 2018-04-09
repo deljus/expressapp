@@ -3,7 +3,7 @@ import { withStyles, FormControl, InputLabel } from "material-ui";
 import { Clear, Check } from "material-ui-icons";
 import PropTypes from "prop-types";
 import cx from "classnames";
-import ReactQuill from 'react-quill'; // ES6
+import ReactQuill from 'react-quill';
 import customInputStyle from "variables/styles/customInputStyle";
 import 'react-quill/dist/quill.snow.css';
 
