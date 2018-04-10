@@ -17,9 +17,7 @@ exports.deleteTableItem = async(req, res) => {
   res.json(rowCount);
 };
 
-exports.
-
-exports.getColumns = async(req, res) => {
+exports.getTableColumns = async(req, res) => {
   const name = req.params.name;
   const columnsName = await Object.keys(models[name].tableAttributes);
   const columnsType = await columnsName.map(columnName => models[name].tableAttributes[columnName].type.key);
