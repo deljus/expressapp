@@ -1,0 +1,33 @@
+'use strict';
+
+const fs = require('fs'),
+      path = require('path');
+
+let controller = {};
+const basename = path.basename(__filename);
+
+const asyncMiddleware = fn =>
+  (req, res, next) => {
+    Promise.resolve(fn(req, res, next))
+           .catch(() => { res.sendStatus(500) });
+  };
+
+fs.readdirSync(__dirname)
+  .filter(file => {
+    console.log(file);
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+
+    const importFile = require(`./${file}`),
+          fileNameWOExten = file.slice(0, -3);
+
+    Object.keys(importFile).forEach(fns => {
+      importFile[fns] = asyncMiddleware(importFile[fns]);
+    });
+
+    controller[fileNameWOExten] = importFile;
+
+  });
+
+module.exports = controller;
