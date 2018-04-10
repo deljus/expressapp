@@ -51,6 +51,7 @@ function* initCreateItemTable({ tableName }) {
 }
 
 function* deleteTableItem({ tableName, id }) {
+  yield call(REQ.deleteTableItem, tableName, id);
   yield put(deleteTableData(tableName, id))
 }
 
@@ -59,5 +60,5 @@ export function* sagas() {
   yield takeEvery(INIT_TABLE_SAGA, requestSaga, initTables);
   yield takeEvery(INIT_EDIT_TABLE_ITEM_SAGA, requestSaga, initEditTable);
   yield takeEvery(INIT_CREATE_TABLE_ITEM_SAGA, requestSaga, initCreateItemTable);
-  yield takeEvery(DELETE_TABLE_ITEM_SAGA, deleteTableItem);
+  yield takeEvery(DELETE_TABLE_ITEM_SAGA, requestSaga, deleteTableItem);
 }

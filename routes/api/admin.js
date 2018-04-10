@@ -21,9 +21,18 @@ const getDataFromTable = async (req, res) => {
 
 router.get('/table/data/:name', getDataFromTable);
 router.get('/table/data/:name/:id', getDataFromTable);
-router.delete('/table/data/delete', (req, res) => {
 
+
+
+router.delete('/table/data/delete', async(req, res) => {
+  const id = req.body.id;
+  const tableName = req.body.tableName;
+  console.log(req.body.tableName);
+  let row = await models[tableName].destroy({ where: { id }});
+  row ? res.send(200): res.send(500)
 });
+
+
 
 router.get('/table/columns/:name', async (req, res) => {
   const tableName = req.params.name;
