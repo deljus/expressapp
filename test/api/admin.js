@@ -1,23 +1,18 @@
-'use strict';
-
-let app = require('../../app');
+import app from '../../app';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let should = chai.should();
+let models = require('../../models');
 
 chai.use(chaiHttp);
 
-describe('models/task', function () {
-  before(function () {
-    return require('../../models').sequelize.sync();
+describe('Testing rest table api for admin', () => {
+
+  beforeEach(() => {
+    return models['Pages'].destroy({truncate: true})
   });
 
-  beforeEach(function () {
-    this.Users = require('../../models').Users;
-  });
-
-
-  it('get table data', function (done) {
+  it('get table data', (done) => {
     chai.request(app)
       .get('/api/table/data/Pages')
       .end((err, res) => {
@@ -27,7 +22,7 @@ describe('models/task', function () {
     });
   });
 
-  it('get table columns', function (done) {
+  it('get table columns', done => {
     chai.request(app)
       .get('/api/table/columns/Pages1')
       .end((err, res) => {

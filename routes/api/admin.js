@@ -1,11 +1,14 @@
-const router = require('express').Router();
-const AdminTable = require('../../controllers').admin;
+import { Router } from 'express';
+import controller from '../../controllers';
 
-router.get('/association', AdminTable.getAccosiation);
-router.get('/table/data/:name', AdminTable.getTableData);
-router.get('/table/data/:name/:id', AdminTable.getTableData);
-router.get('/table/columns/:name', AdminTable.getTableColumns);
+const router = Router();
+const admin = controller.admin;
 
-router.delete('/table/data/delete', AdminTable.deleteTableItem);
+router.get('/association', admin.getAccosiation);
+router.get('/table/data/:name', admin.getTableData);
+router.get('/table/data/:name/:id', admin.getTableData);
+router.get('/table/columns/:name', admin.getTableColumns);
 
-module.exports = router;
+router.delete('/table/data/delete', admin.deleteTableItem);
+
+export default router;

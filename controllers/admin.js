@@ -1,23 +1,23 @@
-const models  = require('../models');
+import models from '../models';
 
 
-exports.getAccosiation = async(req, res) => {
+export const getAccosiation = async(req, res) => {
   res.json( await models.Dashboards.findAll());
 };
 
-exports.getTableData = async(req, res) => {
+export const getTableData = async(req, res) => {
   const { name, id } = req.params;
   const data = id ? await models[name].findById(id) : await models[name].findAll();
   res.json(data);
 };
 
-exports.deleteTableItem = async(req, res) => {
+export const deleteTableItem = async(req, res) => {
   const { name, id } = req.body;
   const rowCount = await models[name].destroy({ where: { id } });
   res.json(rowCount);
 };
 
-exports.getTableColumns = async(req, res) => {
+export const getTableColumns = async(req, res) => {
   const name = req.params.name;
   const columnsName = await Object.keys(models[name].tableAttributes);
   const columnsType = await columnsName.map(columnName => models[name].tableAttributes[columnName].type.key);

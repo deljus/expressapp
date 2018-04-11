@@ -1,7 +1,5 @@
-'use strict';
-
-const fs = require('fs'),
-      path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 let controller = {};
 const basename = path.basename(__filename);
@@ -29,4 +27,4 @@ fs.readdirSync(__dirname)
 
   });
 
-module.exports = controller;
+export default controller;

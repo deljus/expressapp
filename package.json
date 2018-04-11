@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start:server": "DEBUG=express-sequelize node ./bin/www",
+    "start:server": "DEBUG=express-sequelize nodemon ./bin/www --exec babel-node --presets es2015,stage-2",
     "up:migration": "node_modules/.bin/sequelize db:migrate",
     "down:migration": "node_modules/.bin/sequelize db:migrate:undo:all",
     "up:seeders": "node_modules/.bin/sequelize db:seed:all",
     "down:seeders": "node_modules/.bin/sequelize db:seed:undo:all",
     "build:admin": "cd admin && npm run build",
     "start-dev-admin": "cd admin && npm run start",
-    "test-api": "cross-env NODE_ENV=test ./node_modules/.bin/mocha test/api/*.js"
+    "test-api": "NODE_ENV=test && mocha -R spec --compilers js:babel-register test/api/*.js "
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -64,6 +64,12 @@
     "redux-devtools-extension": "^2.13.2",
     "supertest": "^2.0.0",
     "chai": "^4.1.2",
-    "chai-http": "^4.0.0"
+    "chai-http": "^4.0.0",
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.26.0",
+    "babel-preset-stage-2": "^6.11.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.11.6",
+    "nodemon": "^1.10.0"
   }
 }
