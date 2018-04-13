@@ -4,25 +4,17 @@ import favicon from 'serve-favicon';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-
+import cors from 'cors';
+import { pages } from './routes';
 import { admin } from './routes/api';
 
 
 var app = express();
-
-var allowCrossDomain = (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-};
-
-app.use(allowCrossDomain);
-
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -33,8 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
-
+// app.use(allowCrossDomain);
 app.use('/api', admin);
+app.use('/', pages);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

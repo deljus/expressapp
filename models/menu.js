@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Menu = sequelize.define('Menus', {
     name: DataTypes.STRING,
+    url: DataTypes.STRING,
     submenu: DataTypes.INTEGER,
     access: DataTypes.INTEGER
   }, {
