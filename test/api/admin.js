@@ -1,16 +1,14 @@
 import app from '../../app';
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let should = chai.should();
-let models = require('../../models');
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import models from '../../models';
 
+const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Testing rest table api for admin', () => {
 
-  beforeEach(() => {
-    return models['Pages'].destroy({truncate: true})
-  });
+  before(() => models.sequelize.sync());
 
   it('get table data', (done) => {
     chai.request(app)
@@ -30,5 +28,4 @@ describe('Testing rest table api for admin', () => {
         done();
       });
   });
-
 });

@@ -9,7 +9,7 @@ let db = {};
 
 const env = process.env.NODE_ENV || 'development';
 
-var sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, config[env]);
+const sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, config[env]);
 
 
 fs
@@ -18,7 +18,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    var model = sequelize['import'](path.join(__dirname, file));
+    const model = sequelize['import'](path.join(__dirname, file));
     db[model.name] = model;
   });
 
