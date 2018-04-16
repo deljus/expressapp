@@ -7,29 +7,21 @@ block navbar
             span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse
             ul.navbar-nav.mr-auto
+                each menu in menuTree
+                    if menu.children
+                        li.nav-item.dropdown
+                            a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                                = menu.name
+                            .dropdown-menu(aria-labelledby='navbarDropdown')
+                                each submenu in menu.children
+                                    a.dropdown-item(href= submenu.url)= submenu.name
+                    else
+                        li.nav-item
+                            a.nav-link(href= menu.url)= menu.name
 
-                each menu in menuItems
-                    li.nav-item
-                        a.nav-link(href='#')= menu.name
-
-                //li.nav-item.active
-                //    a.nav-link(href='#')
-                //        | Home
-                //        span.sr-only (current)
-                //
-                //li.nav-item.dropdown
-                //    a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                //        | Dropdown
-                //    .dropdown-menu(aria-labelledby='navbarDropdown')
-                //        a.dropdown-item(href='#') Action
-                //        a.dropdown-item(href='#') Another action
-                //        .dropdown-divider
-                //        a.dropdown-item(href='#') Something else here
-                //li.nav-item
-                //    a.nav-link.disabled(href='#') Disabled
             form.form-inline.my-2.my-lg-0
                 input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
                 button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 
 block content
-    h1=page
+    h1=page.Pages.title

@@ -1,27 +1,27 @@
 import models from '../models';
+import { getNestedChildren } from '../assets/core';
 
-function getNestedChildren(arr, parent) {
-  var out = []
-  for(var i in arr) {
-    if(arr[i].id == parent) {
-      var children = getNestedChildren(arr, arr[i].id)
-
-      if(children.length) {
-        arr[i].children = children
-      }
-      out.push(arr[i])
-    }
-  }
-  return out
-}
+const Op = models.sequelize.Op;
 
 export const getPages = async(req, res) => {
+  const { url } = req.params;
   try {
-    const menus = await models.Menus.findAll();
+    const menu = await models.Menus.findAll();
+    const page = await models.Menus.findOne({
+      where: {
+        url: `/${url || ""}`
+      },
+      include: [{
+        model: models.Pages,
+        required: true
+      }]
+    });
 
-    console.log(getNestedChildren(menus));
+    const menuTree = getNestedChildren(menu, 'submenu');
 
-    res.render('pages', {menuItems: menus});
+
+
+    res.render('pages', { menuTree, page });
   } catch(e){
     console.log(e)
   }
