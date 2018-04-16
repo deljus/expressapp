@@ -24,4 +24,58 @@ block navbar
                 button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 
 block content
-    h1=page.Pages.title
+    .row
+        .col-md-8.blog-main
+            h3.pb-3.mb-4.font-italic.border-bottom
+                | From the Firehose
+            .blog-post
+                h2.blog-post-title= page.title
+                p.blog-post-meta
+                    | January 1, 2014 by
+                    a(href='#') Mark
+                .page-content= page.text
+        aside.col-md-4.blog-sidebar
+            .p-3.mb-3.bg-light.rounded
+                h4.font-italic About
+                p.mb-0
+                    | Etiam porta
+                    em sem malesuada magna
+                    |  mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+            .p-3
+                h4.font-italic Archives
+                ol.list-unstyled.mb-0
+                    li
+                        a(href='#') March 2014
+                    li
+                        a(href='#') February 2014
+                    li
+                        a(href='#') January 2014
+                    li
+                        a(href='#') December 2013
+                    li
+                        a(href='#') November 2013
+                    li
+                        a(href='#') October 2013
+                    li
+                        a(href='#') September 2013
+                    li
+                        a(href='#') August 2013
+                    li
+                        a(href='#') July 2013
+                    li
+                        a(href='#') June 2013
+                    li
+                        a(href='#') May 2013
+                    li
+                        a(href='#') April 2013
+            .p-3
+                h4.font-italic Elsewhere
+                ol.list-unstyled
+                    li
+                        a(href='#') GitHub
+                    li
+                        a(href='#') Twitter
+                    li
+                        a(href='#') Facebook
+        // /.blog-sidebar
+    // /.row

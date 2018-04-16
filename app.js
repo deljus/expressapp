@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { pages } from './routes';
+import { pages, posts } from './routes';
 import { admin } from './routes/api';
 
 
@@ -16,8 +16,7 @@ app.use(cors());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/static/favicon.ico'));
 
 app.use(morgan('dev'));
 
@@ -26,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 // app.use(allowCrossDomain);
+app.use('/post', posts);
 app.use('/api', admin);
 app.use('/', pages);
 

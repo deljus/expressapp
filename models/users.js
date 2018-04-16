@@ -10,8 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        // models.User.hasMany(models.Task);
-        // models.User.hasMany(models.Pages);
+        models.Users.hasMany(models.Posts);
       }
     }
   });
