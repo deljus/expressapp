@@ -12,7 +12,7 @@ export const getPages = async(req, res) => {
       ],
     });
 
-    res.render('pages', { menuTree: req.menuTree, page: page.Pages[0]});
+    res.render('pages', { page: page.Pages[0]});
   } catch(e){
     console.log(e)
   }

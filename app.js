@@ -7,42 +7,50 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { pages, posts } from './routes';
 import { admin } from './routes/api';
+import {
+  menuMiddleware,
+  notFoundMiddleware,
+  serverErrMiddleware
+} from './assets/middlewares';
+import passport from 'passport';
+import { Strategy } from 'passport-local';
+import expressSession from 'express-session';
 
 
-var app = express();
+let app = express();
+
 app.use(cors());
 
-// view engine setup
+app.use(expressSession({
+  secret: 'keyboard cat'
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(favicon(__dirname + '/static/favicon.ico'));
 
 app.use(morgan('dev'));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
-// app.use(allowCrossDomain);
-app.use('/post', posts);
+
 app.use('/api', admin);
+
+app.use(menuMiddleware);
+
+app.post('/login',                  users.login);
+app.post('/register',               users.register);
+app.get('/logout',                  users.logout);
+
+app.use('/post', posts);
 app.use('/', pages);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: (app.get('env') === 'development') ? err : {}
-  });
-});
-
+// catch errors
+app.use(notFoundMiddleware);
+app.use(serverErrMiddleware(app.get('env')));
 
 export default app;
