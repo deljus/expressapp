@@ -24,6 +24,14 @@ module.exports = {
         url: '/errr2',
         createdAt: new Date,
         updatedAt: new Date
+      },
+      {
+        name: 'Подменю 1111',
+        submenu: 2,
+        access: 3,
+        url: '/errr2',
+        createdAt: new Date,
+        updatedAt: new Date
       }
     ], {});
   },

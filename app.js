@@ -15,7 +15,7 @@ import {
 import passport from 'passport';
 import { Strategy } from 'passport-local';
 import expressSession from 'express-session';
-
+import controllers from './controllers'
 
 let app = express();
 
@@ -42,9 +42,9 @@ app.use('/api', admin);
 
 app.use(menuMiddleware);
 
-app.post('/login',                  users.login);
-app.post('/register',               users.register);
-app.get('/logout',                  users.logout);
+app.post('/login', controllers.users.login);
+app.post('/register', controllers.users.register);
+app.get('/logout', controllers.users.logout);
 
 app.use('/post', posts);
 app.use('/', pages);

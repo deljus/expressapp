@@ -1,28 +1,5 @@
 extends layout.pug
 
-block navbar
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(href='#') Navbar
-        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse
-            ul.navbar-nav.mr-auto
-                each menu in menuTree
-                    if menu.children
-                        li.nav-item.dropdown
-                            a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                                = menu.name
-                            .dropdown-menu(aria-labelledby='navbarDropdown')
-                                each submenu in menu.children
-                                    a.dropdown-item(href= submenu.url)= submenu.name
-                    else
-                        li.nav-item
-                            a.nav-link(href= menu.url)= menu.name
-
-            form.form-inline.my-2.my-lg-0
-                input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
-                button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
-
 block content
     .row
         .col-md-8.blog-main
